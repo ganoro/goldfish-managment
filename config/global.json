@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "goldfish"
+        }, 
+        "goldfish": {
+            "applicationId": "SJ5J3wGKWtORfyOPpr2crarg4ZUZi1UgL1mwO37G", 
+            "masterKey": "5Pg9x743MFxKOlcJRXga0y2QXvvrPJz187M6RQgA"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.12"
+    }
+}
