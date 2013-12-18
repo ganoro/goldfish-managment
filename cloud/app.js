@@ -1,4 +1,3 @@
-
 // These two lines are required to initialize Express in Cloud Code.
 var express = require('express');
 var parseExpressHttpsRedirect = require('parse-express-https-redirect');
@@ -324,6 +323,9 @@ app.post('/createReality', function(req, res)
 				if(now.getTime() > date.getTime())
 					throw new Error("You can't assign shift in the past!");
 				monthly.set("user", user);
+				monthly.set("num_of_shift_done", 0);
+				monthly.set("total_score", 0);
+				
 				monthly.set("month", date.getMonth());
 				monthly.set("year", date.getFullYear());
 				monthly.set("sales", createSales(req));
