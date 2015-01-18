@@ -325,7 +325,8 @@ app.post('/createReality', function(req, res)
 				monthly.set("user", user);
 				monthly.set("num_of_shift_done", 0);
 				monthly.set("total_score", 0);
-				
+				monthly.set("question1", req.body.element_3a);
+				monthly.set("question2", req.body.element_3b);               
 				monthly.set("month", date.getMonth());
 				monthly.set("year", date.getFullYear());
 				monthly.set("sales", createSales(req));
@@ -342,7 +343,9 @@ app.post('/createReality', function(req, res)
 								elements : [
 								    {key : translations.createReality.title, value : "", type : "title"},
 								    {key : translations.createReality.lbl_pcId, value : month.get("user").id},
-								    {key : translations.createReality.lbl_monthlySales, value : month.get("sales").monthly},
+								    {key : translations.createReality.lbl_question1, value : month.get("sales").question1},
+								    {key : translations.createReality.lbl_question2, value : month.get("sales").question2},
+                                    {key : translations.createReality.lbl_monthlySales, value : month.get("sales").monthly},
 								    {key : translations.createReality.lbl_numOfShifts, value : month.get("sales").num_of_shifts},
 								    {key : translations.createReality.lbl_valuesList, value : month.get("energies").offers, tag:"list"},
 								    {key : translations.createReality.lbl_myChalange, value : month.get("energies").blockers},

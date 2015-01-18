@@ -69,7 +69,9 @@ var translations = {
 	createReality : {
 		title : "הזמנת מציאות",
 		lbl_pcId: "שם משתמש (דואר אלקטרוני)",
-		lbl_monthlySales : "מכירות חודשי",
+		lbl_question1 : "תחילת יום - שאלת ההישגים",
+		lbl_question2 : "סוף יום - שאלת ההישגים",
+        lbl_monthlySales : "מכירות חודשי",
 		lbl_numOfShifts : "מספר משמרות חודשי",
 		lbl_valuesList : "רשימת ערכים",
 		lbl_value1Description : "תיאור ערך 1",
