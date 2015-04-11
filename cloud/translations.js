@@ -83,7 +83,8 @@ var translations = {
 		lbl_chalangeAwarness : "נוכחות לאתגר",
 		lbl_actionPlanning : "תכנון מעשים",
 		lbl_startDate : "תאריך התחלה תרגול",
-		lbl_startTime : "תחילת יום פעילות",
+		lbl_endDate : "תאריך סיום תרגול",
+        lbl_startTime : "תחילת יום פעילות",
 		lbl_endTime : "סוף יום פעילות",
 		lbl_year :  "שנה",
 		lbl_month : "חודש",
@@ -100,7 +101,8 @@ var translations = {
 		chalangeAwarness : "",
 		actionPlanning : "",
 		startDate : "",
-		startTime : "",
+		endDate : "",
+        startTime : "",
 		endTime : ""
 	},
 	findAndDelete : {

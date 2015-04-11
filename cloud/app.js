@@ -320,6 +320,7 @@ app.post('/createReality', function(req, res)
 				var now = new Date();
 				now = new Date(now.getTime() + (offset * (-60) *1000)); //Fix the time zone offset
 				var date = new Date(req.body.element_17 + "T" + req.body.element_16);//UTC2Local(req.body.element_17, req.body.element_16);
+                var endDate = new Date(req.body.element_17a + "T" + req.body.element_15);//UTC2Local(req.body.element_17, req.body.element_16);
 				if(now.getTime() > date.getTime())
 					throw new Error("You can't assign shift in the past!");
 				monthly.set("user", user);
@@ -329,6 +330,8 @@ app.post('/createReality', function(req, res)
 				monthly.set("question2", req.body.element_3b);               
 				monthly.set("month", date.getMonth());
 				monthly.set("year", date.getFullYear());
+                monthly.set("startDate", date);
+				monthly.set("endDate", endDate);
 				monthly.set("sales", createSales(req));
 				monthly.set("actions", craeteActions(req));
 				monthly.set("energies", craeteEnergies(req));
@@ -352,7 +355,9 @@ app.post('/createReality', function(req, res)
 								    {key : translations.createReality.lbl_chalangeAwarness, value : month.get("energies").releasers},
 								    {key : translations.createReality.lbl_actionPlanning, value : month.get("actions").offers},
 								    {key : translations.createReality.lbl_year, value : month.get("year")},
-								    {key : translations.createReality.lbl_month, value : month.get("month")+1}
+								    {key : translations.createReality.lbl_month, value : month.get("month")+1},
+								    {key : translations.createReality.lbl_startDate, value : month.get("startDate")},
+								    {key : translations.createReality.lbl_endDate, value : month.get("endDate")}
 								]
 							};
 							return res.render("showRecords", obj);
@@ -633,10 +638,13 @@ function updateMonthlyDataOnShiftSave(req, res)
 		//query for the relevant monthly and update its information (such as update accumulated sales for this month
 		var Monthly = Parse.Object.extend("Monthly");
 		var query = new Parse.Query(Monthly);
-		var month = startDate.getMonth();
-		query.equalTo("month", month);
-		query.equalTo("user", user);
-		query.first(
+        var d = new Date();
+        var todaysDate = new Date(d.getTime()); 
+        query.lessThanOrEqualTo( "startDate", todaysDate );
+        query.greaterThanOrEqualTo( "endDate", todaysDate );
+        query.equalTo("user", user);
+        console.log("UserId:" + user.id + ", date:" + todaysDate);
+        query.first(
 		{
 			success: function(monthly)
 			{
